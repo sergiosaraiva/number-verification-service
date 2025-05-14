@@ -1,0 +1,2 @@
+curl -X POST http://localhost:8080/api/v1/verify -H "Content-Type: application/json" -H "Authorization: Bearer test-token" -d '{"phoneNumber": "+1234567890", "correlationId": "test-123"}'
+curl -X GET http://localhost:8080/api/v1/device-phone-number -H "Authorization: Bearer test-token"

@@ -6,8 +6,7 @@ spring:
   data:
     mongodb:
       uri: ${MONGO_URL:mongodb://localhost:27017/verification}
-      username: ${MONGOUSER:}
-      password: ${MONGOPASSWORD:}
+      database: verification
   
   # Redis Configuration
   redis:

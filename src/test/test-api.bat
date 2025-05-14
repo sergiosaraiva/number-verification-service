@@ -9,6 +9,7 @@ echo.
 
 echo 2. Testing GET /device-phone-number endpoint:
 curl -X GET http://localhost:8080/api/v1/device-phone-number -H "Authorization: Bearer test-token"
+
 echo.
 echo.
 
