@@ -5,14 +5,15 @@ spring:
   # MongoDB Configuration
   data:
     mongodb:
-      uri: mongodb://${MONGODB_HOST:localhost}:${MONGODB_PORT:27017}/${MONGODB_DATABASE:verification}
-      database: ${MONGODB_DATABASE:verification}
+      uri: ${MONGO_URL:mongodb://localhost:27017/verification}
+      username: ${MONGOUSER:}
+      password: ${MONGOPASSWORD:}
   
   # Redis Configuration
   redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
-    password: ${REDIS_PASSWORD:}
+    host: ${REDISHOST:localhost}
+    port: ${REDISPORT:6379}
+    password: ${REDISPASSWORD:}
   
   # Jackson Configuration
   jackson:
