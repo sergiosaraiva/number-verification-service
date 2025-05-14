@@ -1,0 +1,81 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Spring Boot
+spring-boot-*.pid
+application-local.yml
+application-local.properties
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Docker
+.env
+docker-volumes/
+
+# MongoDB
+data/db/
+
+# Redis
+*.rdb
+dump.rdb
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Batch files and scripts
+*.bat
+*.sh
+!gradlew.bat
+!start-service-background.bat
+!stop-service.bat
+!test-api.bat
+
+# Temp files
+*.tmp
+temp/
+tmp/
+
+# Runtime files
+service.log
