@@ -1,4 +1,4 @@
- spring:
+spring:
   application:
     name: number-verification-service
   
@@ -42,7 +42,7 @@
     endpoint:
       health:
         show-details: when_authorized
-  
+
 # Server Configuration
 server:
   port: ${PORT:8080}

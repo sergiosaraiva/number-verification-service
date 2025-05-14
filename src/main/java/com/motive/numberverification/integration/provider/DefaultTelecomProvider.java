@@ -3,43 +3,21 @@ package com.motive.numberverification.integration.provider;
 import com.motive.numberverification.api.model.VerificationResponse.VerificationStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Default implementation of the TelecomProvider interface.
- * This implementation communicates with the primary telecom API.
+ * Simplified DefaultTelecomProvider for testing.
+ * No WebClient or external dependencies required.
  */
 @Component("defaultTelecomProvider")
 public class DefaultTelecomProvider implements TelecomProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(DefaultTelecomProvider.class);
     
-    private final WebClient webClient;
-    private final String apiUrl;
-    private final String apiKey;
-    
-    public DefaultTelecomProvider(
-            WebClient.Builder webClientBuilder,
-            @Value("${telecom.provider.primary.url}") String apiUrl,
-            @Value("${telecom.provider.primary.key}") String apiKey) {
-        
-        this.webClient = webClientBuilder
-                .baseUrl(apiUrl)
-                .defaultHeader("X-API-Key", apiKey)
-                .build();
-        this.apiUrl = apiUrl;
-        this.apiKey = apiKey;
-    }
-    
     @Override
     public VerificationStatus verifyPhoneNumber(String phoneNumber) {
         logger.info("Verifying phone number with primary telecom provider");
-        
-        // In a real implementation, this would make an API call to the telecom provider
-        // For this example, we're just logging that we reached this point and returning a dummy result
         
         // Simulate API call with random result
         simulateApiLatency();
@@ -60,9 +38,6 @@ public class DefaultTelecomProvider implements TelecomProvider {
     @Override
     public String getDevicePhoneNumber() {
         logger.info("Retrieving device phone number from primary telecom provider");
-        
-        // In a real implementation, this would make an API call to the telecom provider
-        // For this example, we're just logging that we reached this point and returning a dummy result
         
         // Simulate API call with latency
         simulateApiLatency();
