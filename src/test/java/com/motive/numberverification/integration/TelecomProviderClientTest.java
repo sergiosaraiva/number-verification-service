@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.motive.numberverification.api.model.VerificationResponse.VerificationStatus;
+import com.motive.numberverification.api.model.VerificationStatus;
 import com.motive.numberverification.integration.provider.TelecomProvider;
 
 @ExtendWith(MockitoExtension.class)
