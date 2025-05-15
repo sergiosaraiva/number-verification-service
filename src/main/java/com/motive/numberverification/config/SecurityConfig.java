@@ -7,14 +7,26 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.motive.numberverification.security.AuthenticationFilter;
+import com.motive.numberverification.security.RateLimitingFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     
+    private final AuthenticationFilter authenticationFilter;
+    private final RateLimitingFilter rateLimitingFilter;
+    
+    public SecurityConfig(AuthenticationFilter authenticationFilter, 
+                         RateLimitingFilter rateLimitingFilter) {
+        this.authenticationFilter = authenticationFilter;
+        this.rateLimitingFilter = rateLimitingFilter;
+    }
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // For testing purposes, disable security
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorize -> authorize
@@ -22,7 +34,9 @@ public class SecurityConfig {
             )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            );
+            )
+            .addFilterBefore(rateLimitingFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         
         return http.build();
     }
