@@ -1,6 +1,6 @@
 package com.motive.numberverification.integration.provider;
 
-import com.motive.numberverification.api.model.VerificationResponse.VerificationStatus;
+import com.motive.numberverification.api.model.VerificationStatus;
 
 /**
  * Interface for telecom providers that implement number verification functionality.

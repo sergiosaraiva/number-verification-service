@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@Tag(name = "Number Verification", description = "APIs for phone number verification")
+@Tag(name = "Number Verification", description = "Number Verification API")
 public class VerificationController {
 
     private static final Logger logger = LoggerFactory.getLogger(VerificationController.class);
@@ -33,25 +33,37 @@ public class VerificationController {
     @Operation(summary = "Verify if provided phone number matches the user's device",
                description = "Validates whether the provided phone number matches the one associated with the user's device")
     public ResponseEntity<VerificationResponse> verifyPhoneNumber(@Valid @RequestBody VerificationRequest request) {
-        logger.info("Received verification request for phone number: {}", maskPhoneNumber(request.getPhoneNumber()));
+        logger.info("Received verification request");
+        
+        if (request.getPhoneNumber() != null) {
+            logger.info("Verifying phone number: {}", maskPhoneNumber(request.getPhoneNumber()));
+        } else if (request.getHashedPhoneNumber() != null) {
+            logger.info("Verifying hashed phone number");
+        }
         
         // Call the service layer to process the verification
-        VerificationResponse response = verificationService.verifyPhoneNumber(request);
+        boolean verified = verificationService.verifyPhoneNumber(request);
         
-        logger.info("Verification completed with status: {}", response.getStatus());
+        // Create response with verification result
+        VerificationResponse response = new VerificationResponse(verified);
+        
+        logger.info("Verification completed with result: {}", verified);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/device-phone-number")
     @Operation(summary = "Retrieve phone number from user's device",
-               description = "Retrieves the phone number associated with the user's device without requiring input")
+               description = "Retrieves the phone number associated with the user's device")
     public ResponseEntity<DevicePhoneNumberResponse> getDevicePhoneNumber() {
         logger.info("Received request to retrieve device phone number");
         
         // Call the service layer to retrieve the device phone number
-        DevicePhoneNumberResponse response = verificationService.getDevicePhoneNumber();
+        String phoneNumber = verificationService.getDevicePhoneNumber();
         
-        logger.info("Retrieved device phone number: {}", maskPhoneNumber(response.getPhoneNumber()));
+        // Create response with phone number
+        DevicePhoneNumberResponse response = new DevicePhoneNumberResponse(phoneNumber);
+        
+        logger.info("Retrieved device phone number: {}", maskPhoneNumber(phoneNumber));
         return ResponseEntity.ok(response);
     }
     

@@ -1,14 +1,13 @@
 package com.motive.numberverification.integration.provider;
 
-import com.motive.numberverification.api.model.VerificationResponse.VerificationStatus;
+import com.motive.numberverification.api.model.VerificationStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Simplified DefaultTelecomProvider for testing.
- * No WebClient or external dependencies required.
+ * Default implementation of the TelecomProvider interface.
  */
 @Component("defaultTelecomProvider")
 public class DefaultTelecomProvider implements TelecomProvider {

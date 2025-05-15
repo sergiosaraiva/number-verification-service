@@ -1,6 +1,6 @@
 package com.motive.numberverification.integration;
 
-import com.motive.numberverification.api.model.VerificationResponse.VerificationStatus;
+import com.motive.numberverification.api.model.VerificationStatus;
 import com.motive.numberverification.integration.provider.TelecomProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
